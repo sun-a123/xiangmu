@@ -1,0 +1,68 @@
+http://qianfeng.qfjava.cn:8087/jackiechan/BK1804
+C:\Windows\System32\drivers\etc hosts
+18310454767
+
+
+sun-a123  aaa1472
+https://github.com/ssssdssss/xiangmu.git
+
+百度网盘
+链接:https://pan.baidu.com/s/1zkWA6bAkzuOS-rLTlZk96A 提取码:utdv
+192.168.209.121:22122
+
+
+192.168.130.128 
+192.168.130.130
+yum -y install gcc pcre pcre-devel zlib zlib-devel openssl openssl-devel 
+./configure --prefix=/usr/local/nginx --sbin-path=/usr/bin/nginx
+make && make install
+启动:  nginx      监听端口:80 
+   关闭 nginx -s stop 
+
+make PREFIX=/usr/local/src/redis install
+开启redis  端口:6379  /usr/local/src/redis/bin/redis-server
+  命令: cd /usr/local/src/redis/bin     ./redis-cli -h 192.168.130.128 -p 6379
+   密码(auth): 123456    quit退出编辑状态
+
+zookeeper  2181端口     service iptables stop关闭防火墙 要不然发布不了项目
+启动     /usr/local/src/zookeeper-3.4.12/bin/zkServer.sh start
+       (start 启动  ,status 查看状态, restart 重启,stop 停止)
+
+dubbo控制台     http://192.168.130.130:8080/dubbo/  账户 root 密码123456
+solr控制台   http://192.168.130.130:8080/solr/index.html
+
+
+tomcat 配置
+<?xml version="1.0" encoding="UTF-8"?>
+<Context privileged="true" antiResourceLocking="false"
+         docBase="${catalina.home}/webapps/manager">
+    <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$"/>
+</Context>
+
+启动    /usr/local/src/tomcat9/bin/startup.sh  shutdown.sh
+部署项目  http://192.168.130.130:8080/manager/html 账户 root 密码123456
+
+
+mysql  密码:123456
+service mysqld start
+service mysqld stop
+
+
+
+
+
+export JAVA_HOME=/usr/local/java/jdk1.8.0_161
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
+export PATH=$PATH:$JAVA_HOME/bin
+
+
+rpm -qa | grep java 查看
+rpm -e --nodeps +内容  删除
+
+rpm -ivh ########### 安装MySQL配件   顺序common ---libs  --client --server
+mysqld --initialize --user=mysql  MySQL初始化
+cat /var/log/mysqld.log   找到初始化密码
+ALTER USER 'root'@'localhost' IDENTIFIED BY '123456'; 修改密码
+grant all privileges on *.* to 'root' @'%' identified by '123456';远程连接
+flush privileges;   之后刷新权限
